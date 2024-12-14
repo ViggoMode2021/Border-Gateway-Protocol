@@ -32,3 +32,5 @@ Static NAT with VRF
 
 2.) Create a static route for the remote host network with a next hop of the EDGE router interface that is connected to
 the EXTERNAL router.
+
+![image description](relative/path/in/repository/to/image.svg)
