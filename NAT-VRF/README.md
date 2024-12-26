@@ -1,5 +1,7 @@
 Static NAT with VRF
 
+![image description](https://raw.githubusercontent.com/ViggoMode2021/Border-Gateway-Protocol/refs/heads/main/NAT-VRF/NAT-VRF-Topology.png)
+
 *** CORE ***
 
 1.) Assign IPs to upstream (toward EDGE router) and downstream (toward hosts) interfaces.
@@ -32,5 +34,3 @@ Static NAT with VRF
 
 2.) Create a static route for the remote host network with a next hop of the EDGE router interface that is connected to
 the EXTERNAL router.
-
-![image description](https://raw.githubusercontent.com/ViggoMode2021/Border-Gateway-Protocol/refs/heads/main/NAT-VRF/NAT-VRF-Topology.png)
