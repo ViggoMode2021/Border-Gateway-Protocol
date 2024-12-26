@@ -1,6 +1,6 @@
 **** MPLS L3 VPN with Internet Access ****
 
-![image description](https://raw.githubusercontent.com/ViggoMode2021/Border-Gateway-Protocol/refs/heads/main/NAT-VRF/NAT-VRF-Topology.png)
+![image description](https://raw.githubusercontent.com/ViggoMode2021/Border-Gateway-Protocol/refs/heads/main/MPLS-MPBGP/Topology.png)
 
 ---- Section 1 - IP Addressing ----
 
