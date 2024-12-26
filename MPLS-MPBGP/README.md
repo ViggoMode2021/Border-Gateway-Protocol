@@ -1,5 +1,7 @@
 **** MPLS L3 VPN with Internet Access ****
 
+![image description](https://raw.githubusercontent.com/ViggoMode2021/Border-Gateway-Protocol/refs/heads/main/NAT-VRF/NAT-VRF-Topology.png)
+
 ---- Section 1 - IP Addressing ----
 
 1.) Configure loopback, external (customer-facing), and
