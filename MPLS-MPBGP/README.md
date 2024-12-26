@@ -1,4 +1,4 @@
-**** MPLS L3 VPN ****
+**** MPLS L3 VPN with Internet Access ****
 
 ---- Section 1 - IP Addressing ----
 
@@ -44,3 +44,5 @@ the customer routes instead of the provider area router. The provider routers wi
 2.) Redistribute OSPF subnets for the AS under global BGP configuration on service provider routers.
 
 3.) Redistribute BGP subnets for the AS under global OSPF configuration on service provider routers.
+
+---- Section 7 - NAT VRF ----
