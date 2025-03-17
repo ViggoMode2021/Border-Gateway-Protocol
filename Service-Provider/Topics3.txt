@@ -1,0 +1,73 @@
+Study Guide for MPLS, Traffic Engineering, and Segment Routing
+3.1 Implement MPLS
+
+    3.1.a LDP Sync:
+        LDP Sync (Label Distribution Protocol Synchronization) ensures that the Label Switched Path (LSP) is synchronized with the IGP routing table.
+        LDP synchronization allows the MPLS LSP to be established only after the IGP routes are stable and available.
+
+    3.1.b LDP Session Protection:
+        LDP Session Protection ensures that the LDP session between two routers remains active even if one of the links goes down temporarily.
+        This feature helps maintain MPLS forwarding paths without disruption.
+
+    3.1.c LDP Neighbors:
+        LDP Neighbors are routers that have established LDP sessions with each other to exchange label bindings.
+        LDP peers use Hello Protocol to discover each other and exchange labels for forwarding traffic.
+
+    3.1.d Unified MPLS:
+        Unified MPLS combines both MPLS LDP (Label Distribution Protocol) and MPLS TE (Traffic Engineering) into a single, cohesive framework.
+        It allows for a unified control plane to manage both standard MPLS and traffic-engineered LSPs.
+
+    3.1.e MPLS OAM (Operations, Administration, and Maintenance):
+        MPLS OAM tools are used to monitor and troubleshoot MPLS networks.
+        Includes mechanisms like ping and trace route for MPLS LSPs, and more advanced functions such as LSP ping, LSP trace route, and MPLS LSP fault detection.
+
+3.2 Describe Traffic Engineering
+
+    3.2.a ISIS and OSPF Extensions:
+        ISIS and OSPF Traffic Engineering Extensions add TE information into the IGP databases.
+        These extensions enable the routers to compute the optimal paths for traffic using constraints like bandwidth, delay, and available resources.
+
+    3.2.b RSVP Functionality:
+        RSVP (Resource Reservation Protocol) is used for signaling and reserving resources for traffic engineering in MPLS.
+        It allows routers to signal for explicit paths and set up LSPs with guaranteed bandwidth, ensuring quality of service (QoS).
+
+    3.2.c FRR (Fast Reroute):
+        FRR enables quick recovery from link or node failures by pre-creating backup paths.
+        FRR mechanisms allow MPLS traffic to quickly be rerouted to an alternate path in the event of a failure, minimizing downtime.
+
+3.3 Describe Segment Routing
+
+    3.3.a Segment Types:
+        Segment Routing uses different types of segments, which represent a forwarding instruction.
+        Types include:
+            Node Segments: Point to a specific router.
+            Adjacency Segments: Point to a specific link between two routers.
+            Prefix Segments: Point to a destination prefix.
+            Binding SID: Refers to an IGP prefix (can be used to steer traffic).
+
+    3.3.b SR Control Plane (BGP, OSPF, IS-IS):
+        Segment Routing (SR) Control Plane leverages existing IGP protocols (BGP, OSPF, IS-IS) for routing and label distribution.
+        BGP can carry SR information for inter-domain routing, while OSPF and IS-IS distribute SR labels in their link-state databases.
+
+    3.3.c Segment Routing Traffic Engineering:
+        SR Traffic Engineering (SR-TE) enables the use of constraints, such as bandwidth, latency, and priority, to select paths based on traffic demands.
+        SR-TE uses SR Policies that define path constraints and provides greater control over traffic distribution.
+
+    3.3.d TI-LFa (Traffic Engineering with Local Fast Reroute):
+        TI-LFa is a mechanism that provides fast reroute (FRR) by creating backup paths within the segment routing framework.
+        It ensures traffic can be quickly rerouted if there is a failure in the network, using local protection techniques.
+
+    3.3.e PCE-PCC Architectures:
+        PCE (Path Computation Element) is a centralized system that calculates the optimal paths for traffic engineering.
+        PCC (Path Computation Client) refers to the routers that request and use the computed paths from the PCE.
+        This architecture allows for more complex path calculations and optimizations across the network.
+
+    3.3.f Flexible Algorithm:
+        Flexible Algorithms allow for greater customization and flexibility in traffic engineering path computation.
+        Instead of relying on traditional IGP metrics, they allow the application of various constraints like latency, bandwidth, or resource availability to optimize routing decisions.
+
+    3.3.g Locator, Micro-Segment, Encapsulation, Interworking Gateway:
+        Locator: A unique identifier for a segment that helps forward packets in Segment Routing.
+        Micro-Segment: A smaller unit of the network that can be used in Segment Routing to provide granular control of traffic flows.
+        Encapsulation: SR uses encapsulation techniques such as MPLS or IPv6 headers to carry the segment list.
+        Interworking Gateway: A device that enables communication between networks that use different protocols, such as traditional MPLS and Segment Routing.
