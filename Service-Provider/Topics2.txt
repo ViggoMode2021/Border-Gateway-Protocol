@@ -1,0 +1,154 @@
+Study Guide for Routing Protocols and High Availability
+2.1 Implement IS-IS (IPv4 and IPv6)
+
+    2.1.a Route Advertisement:
+        IS-IS (Intermediate System to Intermediate System) is a link-state routing protocol used to exchange routing information between routers.
+        IS-IS advertises routes to its neighbors using LSPs (Link State PDU), which contain the routing information about the router's interface and its neighbors.
+
+    2.1.b Area Addressing:
+        IS-IS uses areas to organize the network into smaller, more manageable sections.
+        Level 1 routers communicate within their own area, while Level 2 routers connect different areas.
+        IS-IS supports IPv4 and IPv6 addressing within each area.
+
+    2.1.c Multitopology:
+        Multitopology in IS-IS allows for the configuration of multiple logical topologies to be run over a single network infrastructure.
+        This allows flexibility for different types of traffic, such as MPLS, and non-MPLS traffic, to be routed differently.
+
+    2.1.d Metrics:
+        IS-IS uses metrics to determine the best path. The metric is a value assigned to the link to reflect its cost.
+        The default metric is "1", but it can be modified to reflect bandwidth, delay, or other parameters.
+
+2.2 Implement OSPF (v2 and v3)
+
+    2.2.a Neighbor Adjacency:
+        OSPF routers form adjacencies with their directly connected neighbors.
+        Adjacency formation involves a series of steps: exchanging Hello packets, forming a DBD (Database Description), exchanging LSR (Link State Request), LSU (Link State Update), and finally LSA (Link State Acknowledgement).
+
+    2.2.b Route Advertisement:
+        OSPF advertises LSAs (Link State Advertisements) to share routing information.
+        OSPFv2 uses IPv4, and OSPFv3 supports IPv6.
+        The LSA types (Type 1-5) define the types of network information shared.
+
+    2.2.c Multiarea (Addressing and Types):
+        OSPF Multiarea networks use a hierarchical design with a backbone area (Area 0) and additional areas.
+        Routers in different areas must have a connection to Area 0, which ensures proper inter-area routing.
+        Types of areas include:
+            Standard Area: Regular OSPF area.
+            Stub Area: An area that doesn't receive external routes.
+            Totally Stubby Area: Blocks both external and inter-area routes.
+            Not-so-stubby Area (NSSA): Can receive external routes but cannot advertise them.
+
+    2.2.d Metrics:
+        OSPF uses the cost metric, which is based on the interface bandwidth.
+        Cost is calculated as: cost = 100,000,000 / bandwidth.
+        OSPF prefers the path with the lowest cost.
+
+2.3 Describe BGP Path Selection Algorithm
+
+    BGP Path Selection Algorithm:
+        BGP uses several steps to select the best path, considering various factors:
+            Weight: The local preference of the path (Cisco-specific attribute).
+            Local Preference: Prefer the path with the highest local preference (for IBGP).
+            AS Path Length: Prefer the path with the shortest AS path (avoiding longer, indirect routes).
+            Origin Type: Prefer IGP (Interior Gateway Protocol) over EGP (Exterior Gateway Protocol) and Incomplete (unknown origin).
+            MED (Multi-Exit Discriminator): Prefer the path with the lowest MED value.
+            EBGP over IBGP: Prefer EBGP-learned routes over IBGP-learned routes.
+            IGP Metric: Prefer the path with the lowest IGP metric to the BGP next-hop.
+            Oldest Route: Prefer the oldest route in case of a tie.
+            BGP Router ID: As a last tie-breaker, prefer the route from the router with the lowest BGP router ID.
+
+2.4 Implement BGP (v4 and v6 for IBGP and EBGP)
+
+    2.4.a Neighbors:
+        IBGP (Internal BGP): BGP peers within the same Autonomous System.
+        EBGP (External BGP): BGP peers between different Autonomous Systems.
+        Neighbor configuration involves specifying the IP address and AS number of the remote peer.
+
+    2.4.b Prefix Advertisement:
+        BGP advertises network prefixes (routes) using Network Command or Redistribution from other routing protocols.
+        BGP routes are advertised with NEXT_HOP attributes that point to the next-hop IP address.
+
+    2.4.c Address Family:
+        BGP can advertise different address families:
+            IPv4 Unicast
+            IPv6 Unicast
+            VPNv4 / VPNv6 (for MPLS VPNs)
+        Configuration of BGP Address Families allows BGP to support both IPv4 and IPv6 routing simultaneously.
+
+    2.4.d Path Selection:
+        BGP's path selection is based on various attributes such as AS Path, MED, and Local Preference (as described in section 2.3).
+
+    2.4.e Attributes:
+        Key attributes in BGP include:
+            AS Path
+            Next Hop
+            MED (Multi-Exit Discriminator)
+            Local Preference
+            Origin
+            Community: Used for tagging and controlling routing policies.
+
+    2.4.f Redistribution:
+        Redistributing routes between different routing protocols (e.g., OSPF to BGP, or IS-IS to BGP).
+        You must define the metrics and possibly manipulate attributes during redistribution.
+
+    2.4.g Additional Paths:
+        BGP supports Additional Paths to advertise multiple paths for the same prefix, allowing better load balancing and fault tolerance.
+
+    2.4.h PIC (Prefix Independent Convergence):
+        Prefix Independent Convergence (PIC) ensures that the BGP routing table can converge quickly even after a failure, reducing downtime and network instability.
+
+2.5 Implement Routing Policy Language and Route Maps (BGP, OSPF, IS-IS)
+
+    Routing Policy Language:
+        Route Maps: Used to control the redistribution of routes and the application of routing policies.
+        Can match criteria based on various attributes (e.g., IP prefixes, BGP AS Path) and set new attributes (e.g., local preference, metric).
+
+    Use of Route Maps in BGP, OSPF, and IS-IS:
+        For BGP, route maps are often used for filtering prefixes, modifying attributes, and controlling route redistribution.
+        For OSPF, route maps can control the redistribution of routes between OSPF and other protocols.
+        For IS-IS, route maps can modify the behavior of route redistribution between IS-IS and other protocols.
+
+2.6 Troubleshoot Routing Protocols
+
+    2.6.a Neighbor Adjacency (IS-IS, OSPF, BGP):
+        IS-IS: Use commands like show isis neighbor to check the status of adjacencies.
+        OSPF: Use show ip ospf neighbor to check OSPF neighbor relationships.
+        BGP: Use show ip bgp summary to see the status of BGP peer connections.
+
+    2.6.b Route Advertisement (IS-IS, OSPF, BGP):
+        IS-IS: Use show isis database to verify the advertised routes.
+        OSPF: Use show ip ospf database to view the LSAs.
+        BGP: Use show ip bgp to check the BGP route table and verify advertisements.
+
+2.7 Describe IPv6 Transition (NAT44, NAT64, CGNAT, MAP-T, and DS Lite)
+
+    NAT44:
+        IPv4-to-IPv4 Network Address Translation.
+        Used for mapping private IPv4 addresses to public IPv4 addresses.
+
+    NAT64:
+        Provides communication between IPv6 and IPv4 networks by translating IPv6 packets into IPv4 packets.
+
+    CGNAT (Carrier-Grade NAT):
+        Used by ISPs to conserve IPv4 addresses by translating multiple customer private IPs to a single public IPv4 address.
+
+    MAP-T (Mapping of Address and Port - Translation):
+        Translates IPv6 packets into IPv4 packets with both address and port mapping.
+
+    DS Lite (Dual-Stack Lite):
+        Provides IPv6 connectivity to IPv4-only applications by tunneling IPv4 packets over an IPv6 network.
+
+2.8 Implement High Availability
+
+    2.8.a NSF / Graceful Restart:
+        NSF (Non-Stop Forwarding) allows routers to continue forwarding traffic while the routing protocol is reconverging.
+        Graceful Restart enables routers to maintain their forwarding state during the restart process.
+
+    2.8.b NSR (Non-Stop Routing):
+        Ensures the router’s control plane remains operational during a failure, providing continuous routing without dropping packets.
+
+    2.8.c BFD (Bidirectional Forwarding Detection):
+        A protocol that quickly detects faults in the path between two forwarding devices, improving network convergence times.
+
+    2.8.d Link Aggregation:
+        EtherChannel or Link Aggregation Control Protocol (LACP) combines multiple physical links into a single logical link for improved redundancy and bandwidth.
