@@ -1,0 +1,151 @@
+Study Guide for Service Provider and Cisco Network Architectures
+
+1.1 Describe Service Provider Architectures
+
+    1.1.a Core Architectures
+        Metro Ethernet:
+            Used to deliver high-speed Internet, data, and voice services to metropolitan areas.
+            Provides Layer 2 transport, typically used for high-speed data transfer between cities or regions.
+        MPLS (Multiprotocol Label Switching):
+            Routes traffic based on labels, which reduces the time spent looking up routing tables.
+            Provides a scalable and flexible method for data transfer across different networks.
+        Unified MPLS:
+            Combines both Layer 2 and Layer 3 MPLS services, allowing providers to offer a single network solution for both IP and Ethernet.
+        SR (Segment Routing):
+            A form of MPLS that simplifies traffic engineering by using segments (specific network instructions) embedded in the packet header.
+            More efficient and scalable than traditional MPLS.
+        SRTE (Segment Routing Traffic Engineering):
+            Extends Segment Routing by adding Traffic Engineering features to optimize traffic flows and network utilization.
+        SRv6 (Segment Routing with IPv6):
+            Uses IPv6 for segment routing, enabling flexible and scalable traffic engineering in an IPv6 environment.
+
+    1.1.b Transport Technologies
+        xDSL (Digital Subscriber Line):
+            A family of technologies (ADSL, VDSL, etc.) that deliver Internet access over telephone lines.
+        DWDM (Dense Wavelength Division Multiplexing):
+            A fiber-optic transmission technology that combines multiple signals on a single optical fiber using different wavelengths (channels).
+        DOCSIS (Data Over Cable Service Interface Specification):
+            A standard for transmitting data over cable TV systems, used for broadband Internet services.
+        TDM (Time Division Multiplexing):
+            A method of transmitting multiple signals over a single communication channel by dividing the channel into time slots.
+        xPON (Passive Optical Network):
+            A family of technologies like GPON (Gigabit PON) used for fiber-optic broadband networks, enabling high-speed Internet.
+
+    1.1.c Mobility
+        Packet Core:
+            Handles the data plane functions (such as data routing) for mobile networks.
+        RAN xhaul Transport for 5G vRAN:
+            Virtualized Radio Access Network (vRAN) uses packet-switched transport networks (e.g., Ethernet) for backhaul and fronthaul, enabling flexibility in 5G deployments.
+        ORAN Transport:
+            Open RAN (ORAN) architecture allows the disaggregation of RAN components and supports a more flexible, software-defined approach to mobile networks.
+
+    1.1.d Routed Optical Network
+        Combines optical transport technologies (such as DWDM) with IP routing to create a scalable, high-capacity transport network that reduces reliance on traditional MPLS and simplifies network management.
+
+1.2 Describe Cisco Network Software Architecture
+
+    1.2.a IOS (Internetwork Operating System):
+        The traditional network operating system used in Cisco routers and switches.
+        Provides a command-line interface (CLI) for configuration and management.
+        Offers robust features for routing, switching, security, and more.
+
+    1.2.b IOS XE:
+        A modular version of IOS, with a Linux kernel at its core.
+        Designed for modern hardware platforms, it supports better scalability and higher availability.
+        Offers features like virtualized routing, flexible software architectures, and improved performance.
+
+    1.2.c IOS XR:
+        A carrier-grade, highly scalable OS used in Cisco’s high-end routers.
+        Designed for large-scale service provider networks, offering features like high availability, in-service software upgrades, and advanced routing protocols.
+        Provides better support for MPLS, traffic engineering, and large-scale routing tables.
+
+1.3 Describe Service Provider Virtualization
+
+    1.3.a NFV Infrastructure (Network Functions Virtualization):
+        Virtualizes network services traditionally run on specialized hardware, allowing them to be run on commodity hardware.
+        Reduces cost, improves flexibility, and enables network automation.
+
+    1.3.b VNF Workloads (Virtual Network Functions):
+        Network functions such as firewalls, load balancers, and routers that are virtualized and run on standard IT hardware.
+        Enables faster deployment, scalability, and service chaining.
+
+    1.3.c Containers:
+        Lightweight, isolated environments for running applications that are easily portable and scalable.
+        Popular in modern cloud-native network functions and microservices architectures.
+
+    1.3.d Application Hosting:
+        The process of running and managing applications in a virtualized or cloud environment.
+        Application hosting in NFV allows network services to be delivered more efficiently and flexibly.
+
+1.4 Describe QoS Architecture
+
+    1.4.a MPLS QoS Models:
+        Pipe: Each LSP (Label Switched Path) has its own set of QoS markings.
+        Short Pipe: Some modifications to QoS markings are allowed, but not all.
+        Uniform: The same QoS markings are applied across all routers in the LSP path.
+
+    1.4.b MPLS TE QoS (Traffic Engineering QoS):
+        MAM (Maximal Allocation per Link): Optimizes the allocation of resources across network paths.
+        RDM (Resource Distribution Model): Distributes network resources efficiently to meet QoS demands.
+        CBTS (Committed Burst Traffic Specification) and PBTS (Peak Burst Traffic Specification): Handle burst traffic in MPLS networks.
+        DS-TE (DiffServ Traffic Engineering): Uses DiffServ markings for better traffic engineering and QoS management.
+
+    1.4.c DiffServ and IntServ QoS Models:
+        DiffServ: Differentiated Services model, uses DSCP (Differentiated Services Code Point) to classify and manage traffic.
+        IntServ: Integrated Services model, uses RSVP (Resource Reservation Protocol) to reserve bandwidth and manage traffic on a per-flow basis.
+
+    1.4.d Trust Boundaries Between Enterprise and SP Environments:
+        QoS policies may differ between enterprise and service provider networks, especially at the border.
+        Ensuring proper QoS configuration at the boundary is essential for maintaining service levels.
+
+    1.4.e IPv6 Flow Label:
+        A 20-bit field in the IPv6 header that can be used for identifying and differentiating traffic flows in a network.
+        Useful for QoS and traffic management in IPv6 networks.
+
+1.5 Configure and Verify Control Plane Security
+
+    1.5.a Control Plane Protection Techniques:
+        LPTS (Low-Priority Traffic Shaping): Protects the control plane by shaping traffic to prevent overload.
+        CoPP (Control Plane Policing): Polices traffic directed at the control plane to prevent malicious traffic.
+
+    1.5.b BGP-TTL Security and Protocol Authentication:
+        Uses TTL (Time to Live) to limit BGP sessions to within the network.
+        BGP protocol authentication ensures that BGP peers are authorized.
+
+    1.5.c BGP Prefix Suppression:
+        Prevents the advertisement of specific prefixes that could lead to unnecessary exposure or routing issues.
+
+    1.5.d LDP Security (Authentication and Label Allocation Filtering):
+        Protects LDP (Label Distribution Protocol) by authenticating peers and filtering label advertisements.
+
+    1.5.e BGP SEC (BGP Security):
+        Focuses on improving the security of BGP, including using encryption and authentication mechanisms.
+
+    1.5.f BGP Flowspec:
+        Used for traffic filtering in BGP networks, allowing for the specification of flow-based traffic rules.
+
+1.6 Describe Management Plane Security
+
+    1.6.a Traceback:
+        The process of tracing the path of packets in the network, typically used in DDoS mitigation or network diagnostics.
+
+    1.6.b AAA and TACACS:
+        AAA (Authentication, Authorization, and Accounting) controls who can access network resources and tracks their usage.
+        TACACS+: A Cisco protocol used for AAA functions, offering more control and security than RADIUS.
+
+    1.6.c RestAPI Security:
+        Ensures that RESTful APIs used for network automation are secured, including using tokens, encryption, and proper access controls.
+
+    1.6.d DDoS:
+        Distributed Denial of Service attacks aimed at overwhelming a network or service, necessitating strong security and mitigation strategies.
+
+1.7 Implement Data Plane Security
+
+    1.7.a uRPF (Unicast Reverse Path Forwarding):
+        Ensures that packets come from a valid source IP address by checking the return path for incoming packets.
+
+    1.7.b ACLs (Access Control Lists):
+        A method for filtering network traffic based on IP addresses, subnets, or protocols, often used to enforce security policies.
+
+    1.7.c RTBH (Remotely Triggered Black Hole):
+        A method for quickly blocking traffic destined for a particular IP address, commonly used during DDoS attacks.
